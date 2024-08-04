@@ -9,13 +9,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { InterceptorsComponent } from './interceptors/interceptors.component';
-import { ValidationsComponent } from './validations/validations.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     InterceptorsComponent,
-    ValidationsComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +23,8 @@ import { ValidationsComponent } from './validations/validations.component';
     NgbModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
-    SweetAlert2Module.forRoot()
+    SweetAlert2Module.forRoot(),
+    HttpClientModule
   ],
   providers: [
     provideClientHydration()
