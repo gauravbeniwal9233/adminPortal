@@ -1,4 +1,4 @@
-import { FormControl, FormGroup, ValidatorFn } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 // Validations : Allow Alphanumeric char and space only
 export class TextFieldValidator {
@@ -76,25 +76,49 @@ export class NoWhiteSpaceValidator {
   }
 }
 // validations: To check if two fieled have same values
+// export function MustMatchValidator(
+//   controlName: string,
+//   matchingControlName: string
+// ) {
+//   return (formGroup: FormGroup) => {
+//     // const control = formGroup.get(controlName);
+//     const control = formGroup.controls[controlName];
+//     const matchingControl = formGroup.controls[matchingControlName];
+
+//     // Return if another validator has already found an error on the matchingControl
+//     if (matchingControl.errors && !matchingControl.errors['mustMatch']) {
+//       return;
+//     }
+
+//     // Set error on matchingControl if validation fails
+//     if (control.value !== matchingControl.value) {
+//       matchingControl.setErrors({ mustMatch: true });
+//     } else {
+//       matchingControl.setErrors(null);
+//     }
+//   };
+// }
 export function MustMatchValidator(
   controlName: string,
   matchingControlName: string
-) {
-  return (formGroup: FormGroup) => {
+) : ValidatorFn {
+  return (ctrl : AbstractControl) : ValidationErrors | null => {
     // const control = formGroup.get(controlName);
-    const control = formGroup.controls[controlName];
-    const matchingControl = formGroup.controls[matchingControlName];
+    const control = ctrl.get([controlName]);
+    const matchingControl = ctrl.get([matchingControlName]);
 
     // Return if another validator has already found an error on the matchingControl
-    if (matchingControl.errors && !matchingControl.errors['mustMatch']) {
-      return;
+    if (matchingControl!.errors && !matchingControl!.errors['mustMatch']) {
+      return null;
     }
 
     // Set error on matchingControl if validation fails
-    if (control.value !== matchingControl.value) {
-      matchingControl.setErrors({ mustMatch: true });
+    if (control!.value !== matchingControl!.value) {
+      matchingControl!.setErrors({ mustMatch: true });
     } else {
-      matchingControl.setErrors(null);
+      matchingControl!.setErrors(null);
     }
+
+    return null;
   };
 }
