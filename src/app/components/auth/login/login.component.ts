@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { HttpService } from '../../../shared/services/http.service';
 import { MustMatchValidator } from '../../../shared/validations/validations.validator';
 import { Global } from '../../../shared/utility/global';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private toaster: ToastrService,
-    private httpService: HttpService
+    private httpService: HttpService,
+    private authService: AuthService,
   ) {}
 
   ngOnInit(): void {
@@ -34,30 +36,68 @@ export class LoginComponent implements OnInit {
   }
 
   setRegisterForm() {
-    this.registerForm = this.formBuilder.group(
+    // this.registerForm = this.formBuilder.group(
+    //   {
+    //     firstName: [
+    //       '',
+    //       Validators.compose([
+    //         Validators.required,
+    //         Validators.minLength(3),
+    //         Validators.maxLength(10),
+    //       ]),
+    //     ],
+    //     lastName: [
+    //       '',
+    //       Validators.compose([
+    //         Validators.required,
+    //         Validators.minLength(3),
+    //         Validators.maxLength(10),
+    //       ]),
+    //     ],
+    //     email: [
+    //       '',
+    //       Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]),
+    //     ],
+    //     userTypeId: [1],
+    //     password: [
+    //       '',
+    //       Validators.compose([
+    //         Validators.required,
+    //         Validators.pattern(
+    //           /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/
+    //         ),
+    //       ]),
+    //     ],
+    //     confirmPassword: ['', Validators.compose([Validators.required])],
+    //   },
+    //   {
+    //     validators: MustMatchValidator('password', 'confirmPassword'),
+    //   }
+    // );
+    this.registerForm = new FormGroup(
       {
-        firstName: [
+        firstName: new FormControl(
           '',
           Validators.compose([
             Validators.required,
             Validators.minLength(3),
             Validators.maxLength(10),
           ]),
-        ],
-        lastName: [
+        ),
+        lastName: new FormControl(
           '',
           Validators.compose([
             Validators.required,
             Validators.minLength(3),
             Validators.maxLength(10),
           ]),
-        ],
-        email: [
+        ),
+        email: new FormControl(
           '',
-          Validators.compose([Validators.required, Validators.email]),
-        ],
-        userTypeId: [1],
-        password: [
+          Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]),
+        ),
+        userTypeId: new FormControl(1),
+        password: new FormControl(
           '',
           Validators.compose([
             Validators.required,
@@ -65,13 +105,10 @@ export class LoginComponent implements OnInit {
               /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/
             ),
           ]),
-        ],
-        confirmPassword: ['', Validators.compose([Validators.required])],
+        ),
+        confirmPassword: new FormControl('', Validators.compose([Validators.required]))
       },
-      {
-        validators: MustMatchValidator('password', 'confirmPassword'),
-      }
-    );
+      MustMatchValidator('password', 'confirmPassword'));
   }
 
   get ctrl() {
@@ -93,7 +130,11 @@ export class LoginComponent implements OnInit {
           .subscribe((res) => {
             console.log(res);
             if (res.isSuccess) {
-              alert('login');
+              this.authService.authLogin(res.data);
+              this.loginForm.reset();
+
+            } else {
+              this.toaster.error(res.errors[0], "Login")
             }
           });
       }
