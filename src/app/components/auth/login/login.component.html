@@ -34,50 +34,67 @@
                                                     <label for="validationCustom0"
                                                         class="col-xl-3 colmd-4"><span>*</span>First
                                                         Name</label>
-                                                    <input class="form-control col-xl-8 col-md-7" type="text" formControlName="firstName" >
+                                                    <input class="form-control col-xl-8 col-md-7" type="text" formControlName="firstName" 
+                                                    [ngClass]="{'is-invalid border-danger' : submitted && ctrl['firstName'].errors}" >
                                                     <div class="col-xl-3 col-md-4"></div>
-                                                    <div class="col-xl-3 col-md-4 invalid-feedback">
-                                                        <div>First Name is required</div>
+                                                    <div class="col-xl-3 col-md-4 invalid-feedback"
+                                                    *ngIf="submitted && ctrl['firstName'].errors">
+                                                        <div *ngIf="ctrl['firstName'].errors['required']">First name is required</div>
+                                                        <div *ngIf="ctrl['firstName'].errors['minlength']">First name min length should be 3 characters long</div>
+                                                        <div *ngIf="ctrl['firstName'].errors['maxlength']">First name max length should be 10 characters long</div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="validationCustom0"
                                                         class="col-xl-3 colmd-4"><span>*</span>Last
                                                         Name</label>
-                                                    <input class="form-control col-xl-8 col-md-7" type="text" formControlName="lastName" >
+                                                    <input class="form-control col-xl-8 col-md-7" type="text" formControlName="lastName" 
+                                                    [ngClass]="{'is-invalid border-danger' : submitted && ctrl['lastName'].errors}" >
                                                     <div class="col-xl-3 col-md-4"></div>
-                                                    <div class="col-xl-3 col-md-4 invalid-feedback">
-                                                        <div>Last Name is required</div>
+                                                    <div class="col-xl-3 col-md-4 invalid-feedback"
+                                                    *ngIf="submitted && ctrl['lastName'].errors">
+                                                        <div *ngIf="ctrl['lastName'].errors['required']">Last name is required</div>
+                                                        <div *ngIf="ctrl['lastName'].errors['minlength']">Last name min length should be 3 characters long</div>
+                                                        <div *ngIf="ctrl['lastName'].errors['maxlength']">Last name max length should be 10 characters long</div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="validationCustom0"
                                                         class="col-xl-3 colmd-4"><span>*</span>Email
                                                     </label>
-                                                    <input class="form-control col-xl-8 col-md-7" type="text" formControlName="email" >
+                                                    <input class="form-control col-xl-8 col-md-7" type="text" formControlName="email" 
+                                                    [ngClass]="{'is-invalid border-danger' : submitted && ctrl['email'].errors}" >
                                                     <div class="col-xl-3 col-md-4"></div>
-                                                    <div class="col-xl-3 col-md-4 invalid-feedback">
-                                                        <div>Email is required</div>
+                                                    <div class="col-xl-3 col-md-4 invalid-feedback"
+                                                    *ngIf="submitted && ctrl['email'].errors">
+                                                        <div *ngIf="ctrl['email'].errors['required']">Email is required</div>
+                                                        <div *ngIf="ctrl['email'].errors['pattern']">Email ID is invalid</div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="validationCustom0"
                                                         class="col-xl-3 colmd-4"><span>*</span>Password
                                                     </label>
-                                                    <input class="form-control col-xl-8 col-md-7" type="password" formControlName="password" >
+                                                    <input class="form-control col-xl-8 col-md-7" type="password" formControlName="password" 
+                                                    [ngClass]="{'is-invalid border-danger' : submitted && ctrl['password'].errors}" >
                                                     <div class="col-xl-3 col-md-4"></div>
-                                                    <div class="col-xl-3 col-md-4 invalid-feedback">
-                                                        <div>Password is required</div>
+                                                    <div class="col-xl-3 col-md-4 invalid-feedback"
+                                                    *ngIf="submitted && ctrl['password'].errors">
+                                                        <div *ngIf="ctrl['password'].errors['required']">Password is required</div>
+                                                        <div *ngIf="ctrl['password'].errors['pattern']">Password should contain 8 characters, lowercase letters, uppercase letters, and number</div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="validationCustom0"
                                                         class="col-xl-3 colmd-4"><span>*</span>Confirm Password
                                                     </label>
-                                                    <input class="form-control col-xl-8 col-md-7" type="password" formControlName="confirmPassword" >
+                                                    <input class="form-control col-xl-8 col-md-7" type="password" formControlName="confirmPassword" 
+                                                    [ngClass]="{'is-invalid border-danger' : submitted && ctrl['confirmPassword'].errors}" >
                                                     <div class="col-xl-3 col-md-4"></div>
-                                                    <div class="col-xl-3 col-md-4 invalid-feedback">
-                                                        <div>Confirm Password is required</div>
+                                                    <div class="col-xl-3 col-md-4 invalid-feedback"
+                                                    *ngIf="submitted && ctrl['confirmPassword'].errors">
+                                                        <div *ngIf="ctrl['confirmPassword'].errors['required']">Password is required</div>
+                                                        <div *ngIf="ctrl['confirmPassword'].errors['mustMatch']">Password must match</div>
                                                     </div>
                                                 </div>
                                                 <div class="form-button">
