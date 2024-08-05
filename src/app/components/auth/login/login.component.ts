@@ -122,6 +122,7 @@ export class LoginComponent implements OnInit {
       this.toaster.error('Password is required !!', 'Login');
     } else {
       if (this.loginForm.valid) {
+        // debugger;
         this.httpService
           .post(
             Global.BASE_API_PATH + 'UserMaster/Login/',
@@ -130,6 +131,7 @@ export class LoginComponent implements OnInit {
           .subscribe((res) => {
             console.log(res);
             if (res.isSuccess) {
+              // debugger;
               this.authService.authLogin(res.data);
               this.loginForm.reset();
 

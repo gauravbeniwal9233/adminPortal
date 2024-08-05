@@ -20,7 +20,7 @@ get isLoggedIn$(){
   authLogin(res: any) {
     // debugger;
     localStorage.setItem("userDetails", JSON.stringify(res));
-    this.router.navigate(['dashboard']);
+    this.router.navigate(['dashboard/default']);
     this.currentUser.next(res);
     this.isLoggedIn.next(true);
   }
