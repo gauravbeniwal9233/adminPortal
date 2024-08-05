@@ -14,12 +14,17 @@ export class HttpService {
   }
 
   post(url : string, model: any) : Observable<any> {
+    // debugger;
     const body = JSON.stringify(model);
     let httpHeaders = new HttpHeaders()
     .set('Content-Type', 'application/json')
     return this._httpClient.post(url, body, {
       headers : httpHeaders
     });
+  }
+
+  postImage(url : string, model: any) : Observable<any> {
+    return this._httpClient.post(url, model);
   }
 
   put(url : string, id : number, model:any): Observable<any> {
@@ -35,12 +40,4 @@ export class HttpService {
     this._httpClient.delete(url + id);
   }
 
-}
-
-// put, patch 
-var obj = {
-  id : 100,
-  firstname : 'ajeet',
-  lastName: 'Singh',
-  age: 20
 }
