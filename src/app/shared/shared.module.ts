@@ -6,6 +6,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FeatherIconComponent } from './components/feather-icon/feather-icon.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { LayoutComponent } from './components/layout/layout.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -16,10 +17,11 @@ import { LayoutComponent } from './components/layout/layout.component';
     SidebarComponent,
     FeatherIconComponent,
     BreadcrumbComponent,
-    LayoutComponent
+    LayoutComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ]
 })
 export class SharedModule { }
