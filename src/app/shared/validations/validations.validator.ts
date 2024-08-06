@@ -32,18 +32,20 @@ export class NumericFieldValidator {
 }
 // Validations : Allow char and space only
 export class CharFieldValidator {
-  static validCharField(fc: FormControl) {
-    if (fc.value != undefined && fc.value != '' && fc.value != null) {
-      const regex = /^[a-zA-Z ]+$/;
-      if (regex.test(fc.value)) {
-        return null;
-      } else {
-        return { validCharFieldError: true };
-      }
-    } else {
+  static validCharField: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    const value = control.value;
+
+    // Check if the value is null, undefined, or empty
+    if (value === null || value === undefined || value === '') {
       return null;
     }
-  }
+
+    // Regular expression to test for valid characters (alphabetic and spaces)
+    const regex = /^[a-zA-Z ]+$/;
+    const valid = regex.test(value);
+
+    return valid ? null : { validCharFieldError: true };
+  };
 }
 // Email Validators
 export class EmailFieldValidator {
@@ -62,18 +64,18 @@ export class EmailFieldValidator {
 }
 // Not Allowed Whitespace only
 export class NoWhiteSpaceValidator {
-  static noWhiteSpaceValidator(fc: FormControl) {
-    if (fc.value != undefined && fc.value != '' && fc.value != null) {
-      const isWhiteSpace = fc.value.toString().trim().length === 0;
-      if (!isWhiteSpace) {
-        return null;
-      } else {
-        return { noWhiteSpaceValidatorError: true };
-      }
-    } else {
+  static noWhiteSpaceValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    const value = control.value;
+
+    // Check if the value is null, undefined, or empty
+    if (value === null || value === undefined || value === '') {
       return null;
     }
-  }
+
+    // Check if the trimmed value is empty (indicating whitespace only)
+    const isWhiteSpace = value.toString().trim().length === 0;
+    return isWhiteSpace ? { noWhiteSpaceValidatorError: true } : null;
+  };
 }
 // validations: To check if two fieled have same values
 // export function MustMatchValidator(
