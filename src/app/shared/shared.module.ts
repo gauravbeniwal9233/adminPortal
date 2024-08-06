@@ -18,6 +18,7 @@ import { RouterModule } from '@angular/router';
     FeatherIconComponent,
     BreadcrumbComponent,
     LayoutComponent,
+    FeatherIconComponent
   ],
   imports: [
     CommonModule,
