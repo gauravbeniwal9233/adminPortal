@@ -29,6 +29,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@ng-bootstrap/ng-bootstrap": "^16.0.0",
     "@sweetalert2/ngx-sweetalert2": "^12.4.0",
+    "@swimlane/ngx-datatable": "^20.1.0",
     "bootstrap": "^5.3.3",
     "express": "^4.18.2",
     "feather-icons": "^4.29.2",
