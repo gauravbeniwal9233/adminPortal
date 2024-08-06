@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CollapseService } from '../../services/collapse.service';
 
 @Component({
   selector: 'app-layout',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrl: './layout.component.scss'
 })
 export class LayoutComponent {
+
+  constructor(public collaspeService : CollapseService) { }
+
+  ngOnInit(): void {
+  }
 
 }
