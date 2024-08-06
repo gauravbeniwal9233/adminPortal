@@ -154,7 +154,7 @@ export class SizeComponent implements OnInit, OnDestroy {
   }
 
   getData() {
-    debugger;
+    // debugger;
     this.httpService
       .get(environment.BASE_API_PATH + 'SizeMaster/GetAll/')
       .subscribe((res) => {
