@@ -8,6 +8,9 @@ import { TagComponent } from './tag/tag.component';
 import { ColorComponent } from './color/color.component';
 import { UsertypeComponent } from './usertype/usertype.component';
 import { SizeComponent } from './size/size.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
 @NgModule({
@@ -21,7 +24,10 @@ import { SizeComponent } from './size/size.component';
   ],
   imports: [
     CommonModule,
-    MastersRoutingModule
+    MastersRoutingModule,
+    ReactiveFormsModule,
+    NgbModule,
+    NgxDatatableModule
   ]
 })
 export class MastersModule { }
