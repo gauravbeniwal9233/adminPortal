@@ -16,11 +16,11 @@ import Swal from 'sweetalert2';
   styleUrl: './size.component.scss',
 })
 export class SizeComponent implements OnInit, OnDestroy {
-  addForm!: FormGroup;
-  buttonText?: string;
-  dbOps?: DbOperation;
-  objRows: any[] | null = null;
-  objRow: any | null = null;
+  addForm: FormGroup;
+  buttonText: string;
+  dbOps: DbOperation;
+  objRows: any[];
+  objRow: any;
 
   @ViewChild('nav') elnav: any;
 
@@ -34,7 +34,7 @@ export class SizeComponent implements OnInit, OnDestroy {
       minlength: 'Name cannot be less than 1 character long',
       maxlength: 'Name cannot be more than 10 character long',
       validCharField: 'Name must contain characters and space only',
-      NoWhiteSpaceValidator: 'Only whitespaces is not allowed',
+      noWhiteSpaceValidator: 'Only whitespaces is not allowed',
     }
   };
 
@@ -65,10 +65,10 @@ export class SizeComponent implements OnInit, OnDestroy {
       ],
     });
     this.addForm.valueChanges.subscribe(() => {
-      this.onvalueChanges();
+      this.onValueChanges();
     });
   }
-  onvalueChanges() {
+  onValueChanges() {
     if (!this.addForm) {
       return;
     }
@@ -79,7 +79,7 @@ export class SizeComponent implements OnInit, OnDestroy {
       if (control && control.dirty && control.invalid) {
         const message = this.validationMessage[field];
         for (const key of Object.keys(control.errors)) {
-          if(key != 'required'){
+          if(key !== 'required'){
 
             this.formErrors[field] += message[key] + " ";
           }
@@ -154,10 +154,11 @@ export class SizeComponent implements OnInit, OnDestroy {
   }
 
   getData() {
+    debugger;
     this.httpService
       .get(environment.BASE_API_PATH + 'SizeMaster/GetAll/')
       .subscribe((res) => {
-        if (res.success) {
+        if (res.isSuccess) {
           this.objRows = res.data;
         } else {
           this.toastr.error(res.errors[0], 'Size Master');
@@ -169,7 +170,7 @@ export class SizeComponent implements OnInit, OnDestroy {
     this.dbOps = DbOperation.update;
     this.elnav.select('addtab');
 
-    this.objRow = this.objRows!.find((x) => x.id === id);
+    this.objRow = this.objRows.find((x) => x.id === id);
     this.addForm.patchValue(this.objRow);
   }
 
@@ -200,7 +201,7 @@ export class SizeComponent implements OnInit, OnDestroy {
           this.httpService
             .post(environment.BASE_API_PATH + 'SizeMaster/Delete/', obj)
             .subscribe((res) => {
-              if (res.success) {
+              if (res.isSuccess) {
                 // this.toastr.success("Record Deleted !!", "Size Master");
                 swalWithBootstrapButtons.fire({
                   title: 'Deleted!',
