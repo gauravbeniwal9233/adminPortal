@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { UsersRoutingModule } from './users-routing.module';
 import { AddUserComponent } from './add-user/add-user.component';
 import { ListUserComponent } from './list-user/list-user.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
 @NgModule({
@@ -13,7 +15,9 @@ import { ListUserComponent } from './list-user/list-user.component';
   ],
   imports: [
     CommonModule,
-    UsersRoutingModule
+    UsersRoutingModule,
+    ReactiveFormsModule,
+    NgxDatatableModule
   ]
 })
 export class UsersModule { }
