@@ -11,7 +11,7 @@
                     <ng-template ngbNavContent>
                         <!--Add Start-->
                         <form [formGroup]="addForm" (ngSubmit)="Submit()">
-                            <div class="form-group row">
+                            <div class="form-group row m-3">
                                 <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Name</label>
                                 <input class="form-control col-xl-8 col-md-7" type="text" formControlName="name">
                                 <div class="col-xl-3 col-md-4"></div>
@@ -22,7 +22,7 @@
                                     <div class="text-danger">{{formErrors.name}}</div>
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <div class="form-group row m-3">
                                 <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Title</label>
                                 <input class="form-control col-xl-8 col-md-7" type="text" formControlName="title">
                                 <div class="col-xl-3 col-md-4"></div>
@@ -33,7 +33,7 @@
                                     <div class="text-danger">{{formErrors.title}}</div>
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <div class="form-group row m-3">
                                 <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Discount Value</label>
                                 <input class="form-control col-xl-8 col-md-7" type="text" formControlName="isSave">
                                 <div class="col-xl-3 col-md-4"></div>
@@ -44,7 +44,7 @@
                                     <div class="text-danger">{{formErrors.isSave}}</div>
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <div class="form-group row m-3">
                                 <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Link</label>
                                 <input class="form-control col-xl-8 col-md-7" type="text" formControlName="link">
                                 <div class="col-xl-3 col-md-4"></div>
@@ -55,7 +55,7 @@
                                     <div class="text-danger">{{formErrors.link}}</div>
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <div class="form-group row m-3">
                                 <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Image
                                     (Logo)</label>
                                 <input class="form-control col-xl-8 col-md-7" type="file" #file
@@ -64,7 +64,7 @@
                                     <br/>
                                     <img [src]="addedImagePath" alt="added Image" class="imgWidth" />
                             </div>
-                            <div class="pull-right">
+                            <div class="pull-right m-3">
                                 <button type="submit" class="btn btn-primary"
                                     [disabled]="addForm.invalid">{{buttonText}}</button>
                                 <button type="button" class="btn btn-danger mx-2" (click)="cancelForm()">Cancel</button>
